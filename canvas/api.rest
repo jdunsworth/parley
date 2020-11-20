@@ -1,0 +1,12 @@
+
+@domain = dale.instructure.com
+@apiURL = {{domain}}/api/v1
+@userToken = {{$dotenv CANVAS_TOKEN}}
+
+
+##########################################
+# USER: Get User Information
+##########################################
+
+GET https://{{apiURL}}/users/self HTTP/1.1
+Authorization: Bearer {{userToken}}
