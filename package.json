@@ -4,7 +4,7 @@
   "description": "Parley for Canvas",
   "productName": "Parley",
   "author": "Justin Dunsworth <justin.dunsworth@gmail.com>",
-  "private": true,
+  "private": false,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
@@ -13,7 +13,12 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
-    "quasar": "^1.0.0"
+    "date-fns": "^2.16.1",
+    "nanoid": "^3.1.18",
+    "quasar": "^1.0.0",
+    "semver": "^7.3.2",
+    "systeminformation": "^4.30.1",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
