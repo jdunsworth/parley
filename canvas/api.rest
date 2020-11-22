@@ -3,23 +3,29 @@
 @apiURL = {{domain}}/api/v1
 @userToken = {{$dotenv CANVAS_TOKEN}}
 
-
-##########################################
-# USER: Get User Information
-##########################################
-
-GET https://{{apiURL}}/users/self/groups
-Authorization: Bearer {{userToken}}
-
 ##########################################
 # TEST URL
 ##########################################
 
 GET https://{{apiURL}}/courses/571
-# Authorization: Bearer {{$dotenv CANVAS_KINLEY}}
 Authorization: Bearer {{userToken}}
 
+##########################################
+# USER: Basic User Details
+##########################################
+GET https://{{apiURL}}/users/self
+Authorization: Bearer {{userToken}}
 
+##########################################
+# USER: Extended User Details
+##########################################
+GET https://{{apiURL}}/users/self/profile
+Authorization: Bearer {{userToken}}
 
+##########################################
+# USER: Activity Stream Summary
+##########################################
+GET https://{{apiURL}}/users/self/activity_stream/summary
+Authorization: Bearer {{userToken}}
 
 

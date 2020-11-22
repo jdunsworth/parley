@@ -11,12 +11,10 @@ To do this, please install the `rest-client` plugin linked above and then copy t
 
 # Canvas API
 
-* [Canvas ]
 * [Canvas LMS API Documentation](https://canvas.instructure.com/doc/api/)
 * [API Terms of Service](https://www.canvaslms.com/policies/api-policy)
 * [Canvas Community](https://community.canvaslms.com/t5/Change-Log/tkb-p/changelog)
 * [Practical API Usage](https://community.canvaslms.com/t5/Developers-Group/Canvas-APIs-Getting-started-the-practical-ins-and-outs-gotchas/ba-p/263685)
-
 
 ## Test & Beta Environments
 All Canvas institutions come with a **BETA** and **TEST** environment. If you are doing read-only work, it's acceptable to run it against the **PRODUCTION** environment, however, any modifications should be run through the non-production environments.
@@ -41,8 +39,6 @@ These environments also are used for testing upcoming changes being released by 
 
 Note: Keep this token safe as it will act on your accounts behalf. It can only be regenerated and not retrieved again. We do not assume any responsibility for tokens.
 
-
-
 ## Considerations
 
 * All API responses are in JSON format.
@@ -66,16 +62,13 @@ This will contain a list of endpoints and usage notes in the order of usage impo
 
 * **User Info:** `/api/v1/users/:id(self)` - Show details for user
 * **User Profile:** `/api/v1/users/:id(self)/profile` - Extended profile data for user.
-* **Activity Stream:** `/users/self/activity_stream/summary` - Prefer this list over full activity stream. Lists global activity stream counts/unreads including Message, Conversations, and Submissions.
+* **Activity Stream:** `/api/v1/users/self/activity_stream/summary` - Prefer this list over full activity stream. Lists global activity stream counts/unreads including Message, Conversations, and Submissions.
 * **Observees:** `/api/v1/users/self/observees` - List all users this account is observing.
 * **Observee:** `/api/v1/users/self/observees/:observee_id` - Get information about specific user.
 * **Course List for User:** `/api/v1/users/:id(self)/courses` - Get list of courses for a user
 * **Course Permissions:** `/api/v1/courses/:courseid/permissions` - Get list of course permissions as user
-
 * **Course Modules:** `/api/v1/courses/:courseid/modules` - Modules (Week)
-
-https://dale.instructure.com:443/api/v1/courses/571/modules/4631/items
-
+* **Graded Submissions:** `/api/v1/users/self/graded_submissions` - Graded Submissions
 
 
 ## API Flow
