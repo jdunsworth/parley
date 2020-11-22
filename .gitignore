@@ -32,5 +32,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-# Environemtn
+# Environment
 .env
+JUSTIN.md
+CHAD.md

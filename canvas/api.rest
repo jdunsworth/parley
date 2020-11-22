@@ -8,5 +8,18 @@
 # USER: Get User Information
 ##########################################
 
-GET https://{{apiURL}}/users/self HTTP/1.1
+GET https://{{apiURL}}/users/self/groups
 Authorization: Bearer {{userToken}}
+
+##########################################
+# TEST URL
+##########################################
+
+GET https://{{apiURL}}/courses/571
+# Authorization: Bearer {{$dotenv CANVAS_KINLEY}}
+Authorization: Bearer {{userToken}}
+
+
+
+
+
