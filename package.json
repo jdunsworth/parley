@@ -7,6 +7,7 @@
   "private": false,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
+    "build": "quasar build -m electron",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
@@ -14,11 +15,11 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.16.1",
+    "electron-json-storage": "^4.3.0",
     "nanoid": "^3.1.18",
     "node-machine-id": "^1.1.12",
     "quasar": "^1.0.0",
     "semver": "^7.3.2",
-    "systeminformation": "^4.30.1",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {

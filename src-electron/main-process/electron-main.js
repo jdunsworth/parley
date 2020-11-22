@@ -1,5 +1,4 @@
 import { app, BrowserWindow, nativeTheme } from 'electron';
-import fs from 'fs';
 
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -36,33 +35,12 @@ function createWindow() {
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
       nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
+      enableRemoteModule: true, // Electron-Settings Support
 
       // More info: /quasar-cli/developing-electron-apps/electron-preload-script
       // preload: path.resolve(__dirname, 'electron-preload.js')
     },
   });
-
-  // Get User Configuration Directory
-  const configPath = `${app.getPath('userData')}\\parley-config.json`;
-
-  // Set our initial route to load with the selector
-  // eslint-disable-next-line no-unused-vars
-  let routeToLoad = process.env.APP_URL;
-
-  // Check if configuration file exists
-  if (fs.existsSync(configPath)) {
-    // Load configuration file
-    try {
-      const loadedConfigFile = fs.readFileSync(configPath, 'utf-8');
-      const configFileData = JSON.parse(loadedConfigFile);
-
-      if (configFileData.url) {
-        routeToLoad = `${process.env.APP_URL}#${configFileData.url}`;
-      }
-    } catch (err) {
-      console.log('Unable to load configuration file. Falling back to selector...');
-    }
-  }
 
   mainWindow.loadURL(process.env.APP_URL);
 
