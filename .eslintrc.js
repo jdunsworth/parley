@@ -26,9 +26,7 @@ module.exports = {
     'plugin:vue/essential', // Priority A: Essential (Error Prevention)
     // 'plugin:vue/strongly-recommended', // Priority B: Strongly Recommended (Improving Readability)
     // 'plugin:vue/recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
-
     'airbnb-base'
-
   ],
 
   plugins: [
@@ -50,6 +48,24 @@ module.exports = {
   // add your custom rules here
   rules: {
     'no-param-reassign': 'off',
+    'comma-dangle': ['error', 'always-multiline'],
+    'no-underscore-dangle': 0,
+    'indent': ['error', 2],
+    'linebreak-style': 0,
+    'global-require': 0,
+    'eslint linebreak-style': [0, 'error', 'windows'],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'always'],
+    'func-names': ['error', 'never'],
+    'max-len': [
+      'error',
+      {
+        'code': 125,
+        'ignoreTrailingComments': true,
+        'ignoreUrls': true,
+        'ignoreTemplateLiterals': true,
+      },
+    ],
 
     'import/first': 'off',
     'import/named': 'error',

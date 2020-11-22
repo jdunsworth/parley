@@ -1,26 +1,9 @@
-# Parley (parley)
+# Parley for Canvas
 
-Parley for Canvas
+## About
 
-## Install the dependencies
-```bash
-npm install
-```
+## Developing on Windows
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
-
-### Lint the files
-```bash
-npm run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+1. `npm install --global quasar` - Install Quasar CLI
+1. `npm install --global windows-build-tools` - Install Windows Build Tools
+1. `quasar dev -m electron` - Start building on Quasar with Electron

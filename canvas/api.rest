@@ -7,8 +7,12 @@
 # TEST URL
 ##########################################
 
-GET https://{{apiURL}}/courses/571
+GET https://{{apiURL}}/courses/571/users/self?include[]=enrollments
 Authorization: Bearer {{userToken}}
+
+
+### !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! USERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 ##########################################
 # USER: Basic User Details
@@ -29,3 +33,23 @@ GET https://{{apiURL}}/users/self/activity_stream/summary
 Authorization: Bearer {{userToken}}
 
 
+### !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! COURSES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+##########################################
+# COURSE: Get My Courses
+##########################################
+GET https://{{apiURL}}/courses?state=available&include[]=total_scores&include[]=storage_quota_used_mb&include[]=total_students&include[]=teachers
+Authorization: Bearer {{userToken}}
+
+##########################################
+# COURSE: Assignments (with Graded) *****
+##########################################
+GET https://{{apiURL}}/courses/571/assignments?include[]=submission&include[]=score_statistics
+Authorization: Bearer {{userToken}}
+
+##########################################
+# COURSE: Classmates
+##########################################
+GET https://{{apiURL}}/courses/571/users?include[]=enrollments&include[]=avatar_url
+Authorization: Bearer {{userToken}}

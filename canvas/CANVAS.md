@@ -76,3 +76,27 @@ This will contain a list of endpoints and usage notes in the order of usage impo
 1. Get own user information: `/api/v1/users/self/profile`
 1. Get list of users observing: `/api/v1/users/self/observees`
 1. Get list of courses for each user: `/api/v1/users/:observee_id/courses`
+
+### Get Course Data
+
+* `https://{{apiURL}}/courses/571/assignments?include[]=submission&include[]=score_statistics`
+
+```js
+results = [
+  {
+    id: 19426, // Assignment ID
+    name: 'Writing Nov. 6',
+    description: 'HTML description',
+    points_possible: 10.0,
+    grading_type: 'pass_fail', // pass_fail, percent, letter_grade, gpa_scale, or points
+    created_at: '2020-11-06T05:25:53Z',
+    updated_at: '2020-11-06T05:42:36Z',
+    due_at: null, // Finding that these are generally null
+    html_url: '', // URL to direct assignment
+    has_submitted_submissions: true, // if true, the assignment has been submitted to by at least one student
+
+  }
+]
+```
+
+* Can check if has submitted through key: `has_submitted_submissions: true/false`
