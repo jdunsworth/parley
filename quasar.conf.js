@@ -106,7 +106,9 @@ module.exports = function (/* ctx */) {
     framework: {
       iconSet: 'fontawesome-v5',
       lang: 'en-us',
-      config: {},
+      config: {
+        dark: true,
+      },
       importStrategy: 'auto',
       // components: [],
       // directives: [],

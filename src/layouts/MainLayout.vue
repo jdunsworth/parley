@@ -1,106 +1,63 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
+  <q-layout view="lhh lpR lff">
     <q-drawer
-      v-model="leftDrawerOpen"
       show-if-above
-      bordered
-      content-class="bg-grey-1"
+      v-model="navigationDrawer"
+      side="left"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+      <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px;">
+        <q-list>
+          <template v-for="nav in navigation">
+            <q-item
+              :key="nav.name"
+              :active="nav.name === 'Messages'"
+              active-class="bg-accent"
+              clickable
+              v-ripple
+            >
+              <q-item-section avatar>
+                <q-icon :name="`fas fa-${nav.icon}`" />
+              </q-item-section>
+
+              <q-item-section>
+                {{ nav.name }}
+              </q-item-section>
+            </q-item>
+          </template>
+        </q-list>
+      </q-scroll-area>
+      <div class="absolute-top" style="height: 150px; border-bottom: 1px solid #1976D2;">
+        <div class="absolute-bottom bg-transparent" style="margin: 10px 10px;">
+          <q-avatar size="56px" class="q-mb-sm" color="accent">
+            <q-icon name="fas fa-user" color="primary" />
+          </q-avatar>
+          <div class="text-weight-bold">Kinley Dunsworth</div>
+        </div>
+      </div>
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
+
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue';
-
-const linksData = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
-  },
-];
-
 export default {
-  name: 'MainLayout',
-  components: { EssentialLink },
   data() {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData,
+      navigationDrawer: false,
+      navigation: [
+        {
+          name: 'Assignments',
+          icon: 'calculator',
+        },
+        {
+          name: 'Messages',
+          icon: 'envelope',
+        },
+      ],
     };
   },
 };
