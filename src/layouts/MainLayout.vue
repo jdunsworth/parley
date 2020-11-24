@@ -26,7 +26,7 @@
             color="accent"
             class="q-ma-md q-ml-none cursor-pointer"
           >
-            <q-icon :color="(i === 3) ? 'primary': 'grey-7'" name="fas fa-user" />
+            <q-icon :color="(i === 3) ? 'primary': 'grey-5'" name="fas fa-user" />
           </q-avatar>
         </div>
       </q-scroll-area>
@@ -44,7 +44,7 @@
               clickable
               v-ripple
               exact
-              exact-active-class="bg-accent"
+              exact-active-class="bg-accent text-white"
             >
 
               <q-item-section avatar>
@@ -67,7 +67,8 @@
             v-ripple
             clickable
             exact
-            exact-active-class="bg-accent"
+            active-class="text-white bg-accent"
+            exact-active-class="bg-accent text-white"
           >
             <q-item-section avatar>
               <q-icon name="fas fa-cog" />
@@ -81,7 +82,7 @@
             clickable
             v-ripple
             exact
-            exact-active-class="bg-accent"
+            exact-active-class="bg-accent text-white"
           >
             <q-item-section avatar>
               <q-icon name="fas fa-plus" />
@@ -96,10 +97,10 @@
       <!-- Application Nav :: END -->
 
       <!-- Profile Box :: START -->
-      <div class="absolute-top" style="height: 150px; border-bottom: 1px solid #1976D2;">
+      <div class="absolute-top" style="height: 150px;">
         <div class="absolute-bottom bg-transparent" style="margin: 10px 10px;">
           <q-avatar size="56px" class="q-mb-sm" color="accent">
-            <q-icon name="fas fa-user" color="primary" />
+            <q-icon name="fas fa-user" color="white" />
           </q-avatar>
           <div class="text-weight-bold">Kinley Dunsworth</div>
         </div>
