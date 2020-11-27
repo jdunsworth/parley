@@ -5,6 +5,10 @@
 </template>
 <script>
 export default {
-  name: 'App',
+  name: 'Parley',
+
+  beforeCreate() {
+    this.$store.commit('initializeStore');
+  },
 };
 </script>

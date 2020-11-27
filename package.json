@@ -1,6 +1,9 @@
 {
   "name": "parley",
   "version": "0.0.1",
+  "parley": {
+    "data-version": "0.0.1"
+  },
   "description": "Parley for Canvas",
   "productName": "Parley",
   "author": "Justin Dunsworth <justin.dunsworth@gmail.com>",
