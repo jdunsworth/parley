@@ -33,6 +33,7 @@ function createWindow() {
     darkTheme: true,
     useContentSize: true,
     autoHideMenuBar: true,
+    frame: false,
     webPreferences: {
       // Change from /quasar.conf.js > electron > nodeIntegration;
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration

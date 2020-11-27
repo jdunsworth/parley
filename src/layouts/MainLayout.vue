@@ -1,14 +1,113 @@
 <template>
-  <q-layout view="lhh lpR lff">
+  <q-layout view="hhh lpR lff">
+
+    <!-- Titlebar -->
+    <q-header elevated class="bg-primary text-white">
+      <q-bar class="q-electron-drag">
+        <q-icon name="far fa-map" />
+        <div class="text-weight-bold">Parley for Canvas</div>
+        <q-space />
+
+        <!-- Settings Button & Menu-->
+        <q-btn
+          flat
+          icon="fas fa-cog q-electron-drag--exception"
+        >
+          <!-- Settings Menu -->
+          <q-menu auto-close fit anchor="bottom right" self="top right">
+            <q-list dense style="min-width: 150px">
+
+              <!-- Toggle Dev Console -->
+              <q-item clickable v-close-popup @click="windowDevConsole">
+                <q-item-section side>
+                  <q-icon name="fas fa-bug" size="xs" />
+                </q-item-section>
+                <q-item-section>Toggle Dev Console</q-item-section>
+              </q-item>
+
+              <!-- Reset Configuration -->
+              <q-item clickable v-close-popup>
+                <q-item-section side>
+                  <q-icon name="fas fa-eraser" size="xs" />
+                </q-item-section>
+                <q-item-section>Reset Configuration</q-item-section>
+              </q-item>
+              <q-separator />
+
+              <!-- About Parley -->
+              <q-item clickable v-close-popup>
+                <q-item-section side>
+                  <q-icon name="far fa-map" size="xs" />
+                </q-item-section>
+                <q-item-section>About Parley</q-item-section>
+              </q-item>
+
+            </q-list>
+          </q-menu>
+          <!-- END: Settings Menu -->
+        </q-btn>
+
+        <!-- Minimize button -->
+        <q-btn
+          dense
+          flat
+          icon="far fa-window-minimize q-electron-drag--exception"
+          @click="windowMinimize"
+        >
+          <q-tooltip>Minimize</q-tooltip>
+        </q-btn>
+
+        <!-- Unmaximize/Restore button -->
+        <q-btn
+          v-if="isMaximized"
+          dense
+          flat
+          icon="far fa-window-restore q-electron-drag--exception"
+          @click="windowUnmaximize"
+        >
+          <q-tooltip>Restore</q-tooltip>
+        </q-btn>
+
+        <!-- Maximize Button -->
+        <q-btn
+          v-else
+          dense
+          flat
+          icon="far fa-window-maximize q-electron-drag--exception"
+          @click="windowMaximize"
+        >
+          <q-tooltip>Maximize</q-tooltip>
+        </q-btn>
+
+        <!-- Close button -->
+        <q-btn
+          dense
+          flat
+          icon="far fa-window-close q-electron-drag--exception"
+          @click="windowClose"
+        >
+          <q-tooltip>Close</q-tooltip>
+        </q-btn>
+
+      </q-bar>
+    </q-header>
+    <!-- END: Titlebar -->
+
+    <!-- Navigation Drawer -->
     <q-drawer
       show-if-above
       side="left"
     >
 
-      <!-- Profile Selector -->
-      <div class="row">
-        <div class="col q-py-sm text-h4 text-center">Parley</div>
+      <div v-if="$store.state.profiles.length > 0">
+
       </div>
+
+      <div v-else>
+
+      </div>
+
+      <!-- Profile Selector -->
       <!-- END: Profile Selector -->
 
       <!-- Navigation -->
@@ -30,6 +129,7 @@
       <!-- END: Navigation -->
 
     </q-drawer>
+    <!-- END: Navigation Drawer -->
 
     <!-- Router View -->
     <q-page-container>
@@ -43,10 +143,47 @@
 export default {
   data() {
     return {
+      isMaximized: false,
     };
   }, // /data();
 
   methods: {
+
+    // Minimize Electron Window
+    windowMinimize() {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().minimize();
+      }
+    },
+    // Close Electron Window
+    windowClose() {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().close();
+      }
+    },
+
+    // Maximize Electron Window
+    windowMaximize() {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().maximize();
+        this.isMaximized = true;
+      }
+    },
+
+    // Restore Electron Window
+    windowUnmaximize() {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().unmaximize();
+        this.isMaximized = false;
+      }
+    },
+
+    // Show Developer Console
+    windowDevConsole() {
+      if (process.env.MODE === 'electron') {
+        this.$q.electron.remote.BrowserWindow.getFocusedWindow().toggleDevTools();
+      }
+    },
   },
 
   mounted() {
