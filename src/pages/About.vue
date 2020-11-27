@@ -1,11 +1,13 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    About
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'Grades',
+  name: 'ParleyAbout',
+  methods: {
+  },
 };
 </script>

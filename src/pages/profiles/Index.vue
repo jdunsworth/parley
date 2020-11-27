@@ -1,11 +1,13 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Profile Index
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'Assignments',
+  name: 'ProfileIndex',
+  methods: {
+  },
 };
 </script>

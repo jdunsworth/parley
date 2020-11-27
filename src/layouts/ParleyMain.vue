@@ -11,31 +11,60 @@
         <!-- Settings Button & Menu-->
         <q-btn
           flat
-          icon="fas fa-cog q-electron-drag--exception"
+          icon="fas fa-ellipsis-v q-electron-drag--exception"
         >
           <!-- Settings Menu -->
           <q-menu auto-close fit anchor="bottom right" self="top right">
             <q-list dense style="min-width: 150px">
 
-              <!-- Toggle Dev Console -->
-              <q-item clickable v-close-popup @click="windowDevConsole">
+              <!-- Manage Profiles  -->
+              <q-item
+                clickable
+                v-close-popup
+                to="/profiles/"
+                exact
+              >
                 <q-item-section side>
-                  <q-icon name="fas fa-bug" size="xs" />
+                  <q-icon name="fas fa-users" size="xs" />
                 </q-item-section>
-                <q-item-section>Toggle Dev Console</q-item-section>
+                <q-item-section>Manage Profiles</q-item-section>
               </q-item>
 
-              <!-- Reset Configuration -->
-              <q-item clickable v-close-popup>
+              <!-- Add Profiles -->
+              <q-item
+                clickable
+                v-close-popup
+                to="/profiles/add"
+                exact
+              >
                 <q-item-section side>
-                  <q-icon name="fas fa-eraser" size="xs" />
+                  <q-icon name="fas fa-user-plus" size="xs" />
                 </q-item-section>
-                <q-item-section>Reset Configuration</q-item-section>
+                <q-item-section>Add Profile</q-item-section>
+              </q-item>
+              <q-separator />
+
+              <!-- Settings  -->
+              <q-item
+                clickable
+                v-close-popup
+                to="/settings"
+                exact
+              >
+                <q-item-section side>
+                  <q-icon name="fas fa-cogs" size="xs" />
+                </q-item-section>
+                <q-item-section>Settings</q-item-section>
               </q-item>
               <q-separator />
 
               <!-- About Parley -->
-              <q-item clickable v-close-popup>
+              <q-item
+                clickable
+                v-close-popup
+                to="/about"
+                exact
+              >
                 <q-item-section side>
                   <q-icon name="far fa-map" size="xs" />
                 </q-item-section>
@@ -95,20 +124,12 @@
 
     <!-- Navigation Drawer -->
     <q-drawer
-      show-if-above
+      no-swipe-closen
+      no-swipe-open
       side="left"
+      behavior="desktop"
+      :value="$store.state.profiles.length > 0"
     >
-
-      <div v-if="$store.state.profiles.length > 0">
-
-      </div>
-
-      <div v-else>
-
-      </div>
-
-      <!-- Profile Selector -->
-      <!-- END: Profile Selector -->
 
       <!-- Navigation -->
       <q-list>
@@ -135,15 +156,18 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <!-- END: Router View -->
 
   </q-layout>
 </template>
 
 <script>
 export default {
+  name: 'ParleyMain',
   data() {
     return {
       isMaximized: false,
+      showNav: true,
     };
   }, // /data();
 
@@ -178,15 +202,9 @@ export default {
       }
     },
 
-    // Show Developer Console
-    windowDevConsole() {
-      if (process.env.MODE === 'electron') {
-        this.$q.electron.remote.BrowserWindow.getFocusedWindow().toggleDevTools();
-      }
+    mounted() {
+      console.log('ROUTER ', this.$router);
     },
-  },
-
-  mounted() {
   },
 };
 </script>

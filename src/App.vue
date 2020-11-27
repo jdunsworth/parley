@@ -6,7 +6,6 @@
 <script>
 export default {
   name: 'Parley',
-
   beforeCreate() {
     this.$store.commit('initializeStore');
   },

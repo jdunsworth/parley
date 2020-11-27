@@ -1,11 +1,13 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Add Profile
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'Classmates',
+  name: 'ProfileAdd',
+  methods: {
+  },
 };
 </script>
