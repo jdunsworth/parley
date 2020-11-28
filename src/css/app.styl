@@ -1,5 +1,19 @@
-// app global css in Stylus form
-body.body--dark {
-  background: #131313;
-  color: #FFF;
-}
+// Parley Global CSS Overrides
+
+// Darken background
+body.body--dark
+  background #131313
+  color #FFF
+
+// Reduce padding on q-card-section
+.q-card__section--vert
+  padding 8px
+
+// Color external links red
+a:link[target="_blank"],
+a:visited[target="_blank"],
+a:active[target="_blank"]
+  color $primary
+
+a:hover[target="_blank"]
+  color #FFF

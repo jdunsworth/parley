@@ -25,8 +25,13 @@
             <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a>.
             Hopefully you will find it as useful and helpful as I intend it to be.
             <ul>
-              <li>Have a suggestion? Find a bug? Submit an issue on <a href="https://github.com/jdunsworth/parley/issues" target="_blank">Github</a>.</li>
-              <li>Join the conversation on <a href="https://discord.gg/kzUwrfcNrW" target="_blank">Discord</a></li>
+              <li>
+                Have a suggestion? Find a bug? Submit an issue on
+                <a href="https://github.com/jdunsworth/parley/issues" target="_blank">Github</a>.
+              </li>
+              <li>
+                Join the conversation on <a href="https://discord.gg/kzUwrfcNrW" target="_blank">Discord</a>
+              </li>
             </ul>
           </p>
         </q-card-section>

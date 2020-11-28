@@ -2,7 +2,7 @@
   <q-layout view="hhh lpR lff">
 
     <!-- Titlebar -->
-    <q-header elevated class="bg-primary text-white">
+    <q-header elevated class="bg-secondary text-white">
       <q-bar class="q-electron-drag">
         <q-icon name="far fa-map" />
         <div class="text-weight-bold">Parley for Canvas</div>
@@ -207,8 +207,3 @@ export default {
   },
 };
 </script>
-
-<style lang="stylus">
-  a:link, a:visited, a:hover, a:active
-    color $primary
-</style>
