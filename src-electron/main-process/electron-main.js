@@ -1,4 +1,6 @@
-import { app, BrowserWindow, nativeTheme } from 'electron';
+import {
+  app, BrowserWindow, nativeTheme, shell,
+} from 'electron';
 
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -9,9 +11,9 @@ try {
 }
 
 /**
-   * Set `__statics` path to static files in production;
-   * The reason we are setting it here is that the path needs to be evaluated at runtime
-   */
+* Set `__statics` path to static files in production;
+* The reason we are setting it here is that the path needs to be evaluated at runtime
+*/
 if (process.env.PROD) {
   global.__statics = __dirname;
 }
@@ -19,9 +21,6 @@ if (process.env.PROD) {
 let mainWindow;
 
 function createWindow() {
-  /**
-     * Initial window options
-     */
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
@@ -35,19 +34,22 @@ function createWindow() {
     autoHideMenuBar: true,
     frame: false,
     webPreferences: {
-      // Change from /quasar.conf.js > electron > nodeIntegration;
-      // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
       nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
       enableRemoteModule: true, // Electron-Settings Support
-
-      // More info: /quasar-cli/developing-electron-apps/electron-preload-script
-      // preload: path.resolve(__dirname, 'electron-preload.js')
     },
   });
 
+  // Load the initial page on load
   mainWindow.loadURL(process.env.APP_URL);
 
+  // Open external links in new browser window instead of another Electron window
+  mainWindow.webContents.on('new-window', (e, url) => {
+    e.preventDefault();
+    shell.openExternal(url);
+  });
+
+  // Close main window
   mainWindow.on('closed', () => {
     mainWindow = null;
   });

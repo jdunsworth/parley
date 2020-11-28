@@ -203,11 +203,12 @@ export default {
     },
 
     mounted() {
-      console.log('ROUTER ', this.$router);
     },
   },
 };
 </script>
 
 <style lang="stylus">
+  a:link, a:visited, a:hover, a:active
+    color $primary
 </style>

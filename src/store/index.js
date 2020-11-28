@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import storage from 'electron-json-storage';
 
-const dataVersion = require('../../package.json').parley['data-version'];
+const packageJSON = require('../../package.json');
 
 /**
  * Default State Object
@@ -10,9 +10,16 @@ const dataVersion = require('../../package.json').parley['data-version'];
  * !! Be careful though since it will require a complete re-setup of students. Issue #1
  */
 const defaultState = {
+  config: {
+    version: {
+      app: packageJSON.version,
+      config: packageJSON.parley['data-version'],
+    },
+    location: storage.getDataPath(),
+    organization: 'dale',
+  },
   profiles: [],
   preferences: {},
-  version: dataVersion,
 };
 
 Vue.use(Vuex);
@@ -34,12 +41,15 @@ export default function (/* { ssrContext } */) {
 
         if (
           currentStorage
-          && (currentStorage.version && currentStorage.version === dataVersion)
+          && (currentStorage.version && currentStorage.version === packageJSON.parley['data-version'])
         ) {
           this.replaceState(currentStorage); // Storage found, hydrate from OS
         } else {
           // No storage found or data-version has changed. Set with default state
           storage.set('parley-data', defaultState);
+
+          this.state.config.location = storage.getDataPath();
+          this.state.config.version.app = packageJSON.version;
 
           /**
            * TODO: Need to make this smarter about data structure changes between data versions - Issue #1

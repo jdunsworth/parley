@@ -1,12 +1,27 @@
 {
   "name": "parley",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "parley": {
-    "data-version": "0.0.1"
+    "data-version": "0.0.4"
   },
   "description": "Parley for Canvas",
   "productName": "Parley",
+  "keywords": [
+    "parley",
+    "canvas",
+    "lms"
+  ],
   "author": "Justin Dunsworth <justin.dunsworth@gmail.com>",
+  "contributers": [
+    "Chad Pitchford <cjpitch23@gmail.com>"
+  ],
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jdunsworth/parley.git"
+  },
+  "homepage": "https://github.com/jdunsworth/parley#readme",
+  "bugs": "https://github.com/jdunsworth/parley/issues",
   "private": false,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
