@@ -50,13 +50,14 @@ module.exports = {
     'no-param-reassign': 'off',
     'comma-dangle': ['error', 'always-multiline'],
     'no-underscore-dangle': 0,
-    'indent': ['error', 2],
+    'indent': ['error', 2, { 'SwitchCase': 1 }],
     'linebreak-style': 0,
     'global-require': 0,
     'eslint linebreak-style': [0, 'error', 'windows'],
     'quotes': ['error', 'single'],
     'semi': ['error', 'always'],
     'func-names': ['error', 'never'],
+    'no-multiple-empty-lines': ['error', { 'max': 2, 'maxEOF': 0 }],
     'max-len': [
       'error',
       {

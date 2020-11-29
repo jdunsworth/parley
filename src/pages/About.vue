@@ -112,7 +112,8 @@
           </q-item>
 
           <!-- Configuration Location -->
-          <q-item>
+          <q-item clickable v-ripple @click="openConfiguration()">
+            <q-tooltip>Open Configuration Folder</q-tooltip>
             <q-item-section avatar>
               <q-icon name="fas fa-hdd" />
             </q-item-section>
@@ -120,6 +121,11 @@
               <q-item-label>Configuration Location</q-item-label>
               <q-item-label caption lines="1" class="text-italic">
                 <small>{{ $store.state.config.location }}</small>
+              </q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-item-label>
+                <q-icon name="fas fa-folder-open" />
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -168,12 +174,16 @@
 
 <script>
 import { openURL } from 'quasar';
+import { shell } from 'electron';
 
 export default {
   name: 'ParleyAbout',
   methods: {
     open(url) {
       openURL(url);
+    },
+    openConfiguration() {
+      shell.openPath(this.$store.state.config.location);
     },
   },
 };

@@ -1,15 +1,15 @@
 <template>
   <q-page padding>
-    Index
+    Setup
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'ParleyIndex',
+  name: 'ParleySetup',
 
-  mounted() {
+  methods: {
+
   },
-
 };
 </script>

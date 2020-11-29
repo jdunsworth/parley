@@ -17,6 +17,19 @@
           <q-menu auto-close fit anchor="bottom right" self="top right">
             <q-list dense style="min-width: 150px">
 
+              <!-- Parley Home  -->
+              <q-item
+                clickable
+                v-close-popup
+                to="/"
+                exact
+              >
+                <q-item-section side>
+                  <q-icon name="fas fa-home" size="xs" />
+                </q-item-section>
+                <q-item-section>Home</q-item-section>
+              </q-item>
+
               <!-- Manage Profiles  -->
               <q-item
                 clickable
