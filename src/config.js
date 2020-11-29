@@ -8,7 +8,7 @@
 import storage from 'electron-json-storage';
 import packageJSON from '../package.json';
 
-export default {
+const config = {
 
   appVersion: packageJSON.version, // Application Version
   dataVersion: packageJSON.parley['data-version'], // Configuration (this) file version
@@ -27,11 +27,14 @@ export default {
       location: storage.getDataPath(), // Location where configuration (this) is/will be stored on clients local system
       organization: null, // Canvas organization subdomain
       environment: 'production', // Canvas target environment
-      firstRun: true, // Triggers settings on load if true
     },
-    profiles: [],
+    profiles: {},
     preferences: {},
   },
 
+  // Regular Expression for valid Access Tokens
+  accessTokenRegex: /^[0-9]{1,10}~[0-9A-Za-z]{64}/g,
 
 };
+
+export default config;

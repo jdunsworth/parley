@@ -7,7 +7,7 @@
 export default {
   name: 'Parley',
   beforeCreate() {
-    this.$store.commit('initializeStore');
+    this.$store.dispatch('initializeStore');
   },
 };
 </script>

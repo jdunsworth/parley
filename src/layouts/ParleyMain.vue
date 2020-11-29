@@ -1,17 +1,19 @@
 <template>
-  <q-layout view="hhh lpR lff">
+  <q-layout view="hHh lpR lff">
 
     <!-- Titlebar -->
     <q-header elevated class="bg-secondary text-white">
       <q-bar class="q-electron-drag">
         <q-icon name="far fa-map" />
         <div class="text-weight-bold">Parley for Canvas</div>
+
         <q-space />
 
         <!-- Settings Button & Menu-->
         <q-btn
           flat
           icon="fas fa-ellipsis-v q-electron-drag--exception"
+          v-if="$route.path !== '/setup'"
         >
           <!-- Settings Menu -->
           <q-menu auto-close fit anchor="bottom right" self="top right">

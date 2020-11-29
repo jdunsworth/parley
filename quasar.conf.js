@@ -21,6 +21,8 @@ module.exports = function (/* ctx */) {
     boot: [
       'axios',
       'parley',
+      'validation',
+      'datetime',
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -107,6 +109,7 @@ module.exports = function (/* ctx */) {
       iconSet: 'fontawesome-v5',
       lang: 'en-us',
       config: {
+        notify: { position: 'bottom' },
         dark: true,
       },
       importStrategy: 'auto',

@@ -5,61 +5,62 @@
  */
 
 // Imports
-import storage from 'electron-json-storage';
-import config from '../config.js';
-
 export default {
 
+  replaceStore(state, newState) {
+    this.replaceState(newState);
+  },
+
   /**
-   * Mutation: Initialize Store from Client
-   * ----------------------------------------------------------
-   * This mutation is executed on application load and will attempt to hydrate state, if available, from
-   * clients local operating system. If no configuration, it will create using defaultState object.
-   */
-  initializeStore() {
-    // Get `parley-data` file and contents, if exists
-    const currentStorage = storage.get('parley-data', (error, data) => data || undefined);
-
-    if (
-      currentStorage
-      && (currentStorage.version && currentStorage.version === config.dataVersion)
-    ) {
-      // Storage found, hydrate from OS
-      this.replaceState(currentStorage);
-    } else {
-      // No storage found or data-version has changed. Set with default state
-      storage.set('parley-data', config.defaultState);
-
-      this.state.config.location = storage.getDataPath();
-      this.state.config.version.app = config.appVersion;
-
-      /**
-       * TODO: Need to make this smarter about data structure changes between data versions - Issue #1
-       */
+  * Mutation: Save Parley Settings
+  * ------------------------------------------------------------
+  * This mutation will save Parley configuration settings.
+  *
+  * @param {Object} state - Vuex state
+  * @param {Object} payload - Settings to be saved
+  * @param {String} [payload.organization] - Canvas organization subdomain
+  * @param {String} [payload.environment] - Canvas environment. Allowed: 'production', 'test', and 'beta'
+  */
+  saveSettings(state, payload) {
+    // Save Organization Setting
+    if (payload.organization) {
+      state.config.organization = payload.organization;
     }
 
-    // Subscribe to any future state updates and persist the settings
-    this.subscribe((mutation, state) => {
-      storage.set('parley-data', state);
-    });
-  }, // END: initializeStore()
+    // Save Environment Settings
+    if (payload.environment && ['production', 'beta', 'test'].includes(payload.environment)) {
+      state.config.environment = payload.environment;
+    }
+
+    if (payload.configLocation) {
+      state.config.location = payload.configLocation;
+    }
+
+    if (payload.appVersion) {
+      state.config.version.app = payload.appVersion;
+    }
+  }, // END: saveSettings
 
 
   /**
-   * Mutation: Clear and Re-Initialize Store from Client
-   * ------------------------------------------------------------
-   * This mutation is executed on demand and will delete any existing configuration stored on clients local
-   * operating system and re-create using defaultState object.
-   */
-  clearAndReinitializeStore() {
-    // Remove `parley-data` file, if exists
-    storage.remove('parley-data');
-
-    // Create new `parley-data` file with default state object
-    storage.set('parley-data', config.defaultState);
-
-    // Hydrate current state with default state object
-    this.replaceState(config.defaultState);
-  }, // END: clearAndReinializeStore()
+  * Mutation: Add Profile
+  * ------------------------------------------------------------
+  * This mutation will add a new profile.
+  *
+  * @param {Object} state - Vuex state
+  * @param {Object} profile - Profile to be added
+  * @param {Number} profile.id - ID of Canvas User
+  * @param {String} profile.token - Token of Canvas User
+  * @param {String} profile.login - Username of Canvas User
+  * @param {String} profile.name - Name of Canvas User
+  * @param {String} profile.email - Email of Canvas User
+  * @param {String} profile.avatar - Avatar URL of Canvas User
+  * @param {String} profile.lti - LTI User ID of Canvas User
+  */
+  addProfile(state, profile) {
+    if (!state.profiles[profile.id]) {
+      state.profiles[profile.id] = profile;
+    }
+  },
 
 };

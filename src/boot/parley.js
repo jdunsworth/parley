@@ -1,6 +1,6 @@
 /**
  * ============================================================
- * Parley Boot File
+ * Parley Configuration
  * ============================================================
  */
 
@@ -9,7 +9,7 @@ const config = require('../config.js');
 export default ({ Vue, router, store }) => {
   // Attach configuration object to Vue prototype for access in the application
   Vue.prototype.$parley = {
-    ...config,
+    ...config.default,
   };
 
   // Vue Router settings interceptor
@@ -17,7 +17,6 @@ export default ({ Vue, router, store }) => {
     if ([
       '/setup',
       '/profiles/add',
-      '/about',
       '/settings',
     ].includes(to.path)) {
       // Don't apply if already going to setup or adding profiles.

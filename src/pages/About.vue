@@ -3,14 +3,20 @@
     <div class="q-pa-md row justify-center">
 
       <!-- Left Card -->
-
       <q-card flat bordered class="col-6 q-mr-sm">
 
         <!-- About Section -->
-        <q-card-section class="bg-primary text-white text-bold">
-          About Parley for Canvas
-        </q-card-section>
         <q-card-section class="text-weight-light text-caption">
+
+          <!-- Logo -->
+          <div class="q-my-lg text-center">
+            <q-img
+              src="~/assets/logos/parley_wide.png"
+              spinner-color="primary"
+              contain
+              width="350px"
+            />
+          </div>
           <p>
             Parley was born out of frustration with using Canvas to manage our daughters schoolwork after being thrust into
             virtual learning from the Great Coronavirus Pandemic of 2020.
@@ -21,8 +27,8 @@
             having the same problem as me.
           </p>
           <p>
-            This tool is free, open-source, and licensed under the
-            <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a>.
+            This tool is free, open-source, licensed under the
+            <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a>, and adheres to the <a href="https://canvas.instructure.com/login/canvas" target="_blank">Canvas Acceptable Use Policy</a>.
             Hopefully you will find it as useful and helpful as I intend it to be.
             <ul>
               <li>
@@ -37,48 +43,12 @@
         </q-card-section>
         <!-- END: About Section -->
 
-        <q-card-section class="bg-primary text-white text-bold">
-          Authors & Contributers
+        <!-- Copyright Information -->
+        <q-card-section class="text-weight-light text-caption text-center">
+          Copyright Goes Here
+        <!-- TODO: Add Copyright information -->
+
         </q-card-section>
-
-        <!-- Credits -->
-        <q-list bordered>
-
-          <!-- Justin -->
-          <q-item clickable v-ripple @click.native="open('https://github.com/jdunsworth/')">
-            <q-item-section avatar>
-              <q-avatar>
-                <img src="~/assets/profile/JustinDunsworth.jpg">
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Justin Dunsworth</q-item-label>
-              <q-item-label caption lines="1" class="text-italic">
-                justin.dunsworth@gmail.com
-              </q-item-label>
-            </q-item-section>
-            <q-item-section side>
-              <q-icon name="fab fa-github" />
-            </q-item-section>
-          </q-item>
-
-          <!-- Chad -->
-          <q-item clickable v-ripple @click.native="open('https://github.com/cjpitch23/')">
-            <q-item-section avatar>
-              <q-avatar>
-                <img src="~/assets/profile/ChadPitchford.jpg">
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Chad Pitchford</q-item-label>
-            </q-item-section>
-            <q-item-section side>
-              <q-icon name="fab fa-github" />
-            </q-item-section>
-          </q-item>
-
-        </q-list>
-        <!-- END: Credits -->
 
       </q-card>
       <!-- END: Left Card -->
@@ -154,7 +124,8 @@
           </q-item>
 
           <!-- Dale Canvas Link -->
-          <q-item clickable v-ripple @click.native="open('https://dale.instructure.com/login/canvas')">
+          <!-- TODO: Fix canvasURL and name from getters -->
+          <q-item clickable v-ripple @click.native="open(`${$store.getters.canvasURL}/login/canvas`)">
             <q-item-section avatar>
               <q-icon name="fas fa-chalkboard-teacher" />
             </q-item-section>
@@ -165,6 +136,50 @@
           </q-item>
 
         </q-list>
+
+        <q-card-section class="bg-primary text-white text-bold">
+          Authors & Contributers
+        </q-card-section>
+
+        <!-- Credits -->
+        <q-list bordered>
+
+          <!-- Justin -->
+          <q-item clickable v-ripple @click.native="open('https://github.com/jdunsworth/')">
+            <q-item-section avatar>
+              <q-avatar>
+                <img src="~/assets/profile/JustinDunsworth.jpg">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Justin Dunsworth</q-item-label>
+              <q-item-label caption lines="1" class="text-italic">
+                justin.dunsworth@gmail.com
+              </q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="fab fa-github" />
+            </q-item-section>
+          </q-item>
+
+          <!-- Chad -->
+          <q-item clickable v-ripple @click.native="open('https://github.com/cjpitch23/')">
+            <q-item-section avatar>
+              <q-avatar>
+                <img src="~/assets/profile/ChadPitchford.jpg">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Chad Pitchford</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="fab fa-github" />
+            </q-item-section>
+          </q-item>
+
+        </q-list>
+        <!-- END: Credits -->
+
       </q-card>
       <!-- END: Right Card -->
 

@@ -34,6 +34,7 @@ function createWindow() {
     autoHideMenuBar: true,
     frame: false,
     webPreferences: {
+      webSecurity: false,
       nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
       nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
       enableRemoteModule: true, // Electron-Settings Support
