@@ -32,10 +32,12 @@ export default {
       state.config.environment = payload.environment;
     }
 
+    // Save Configuration Location (only upon initialization)
     if (payload.configLocation) {
       state.config.location = payload.configLocation;
     }
 
+    // Save Application Version (only upon initialization)
     if (payload.appVersion) {
       state.config.version.app = payload.appVersion;
     }

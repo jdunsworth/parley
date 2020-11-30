@@ -20,44 +20,36 @@ export default {
    */
   async initializeStore({ commit }) {
     // Get `parley-data` file and contents, if exists
-    const currentStorage = await storage.get('parley-data', (error, data) => {
-      if (error) {
-        console.log(error);
-        return error;
+    storage.get('parley-data', (error, data) => {
+      if (error) return error;
+
+      if (
+        data
+        && (data.config.version.config && data.config.version.config === config.dataVersion)
+      ) {
+        // Storage found, hydrate from OS
+        commit('replaceStore', data);
+      } else {
+        // No storage found or data-version has changed. Set with default state
+        storage.set('parley-data', config.defaultState);
+
+        // Commit Settings Save
+        commit('saveSettings', {
+          configLocation: storage.getDataPath(),
+          appVersion: config.appVersion,
+        });
       }
 
-      console.log(data);
-
-      return data || undefined;
-    });
-
-    console.log('Current Storage', currentStorage);
-
-    if (
-      currentStorage
-      && (currentStorage.version && currentStorage.version === config.dataVersion)
-    ) {
-      // Storage found, hydrate from OS
-      commit('replaceStore', currentStorage);
-    } else {
-      // No storage found or data-version has changed. Set with default state
-      storage.set('parley-data', config.defaultState);
-
-      // Commit Settings Save
-      commit('saveSettings', {
-        configLocation: storage.getDataPath(),
-        appVersion: config.appVersion,
+      // Subscribe to any future state updates and persist the settings
+      this.subscribe((mutation, newState) => {
+        storage.set('parley-data', newState);
       });
 
-      /**
-       * TODO: Need to make this smarter about data structure changes between data versions - Issue #1
-       */
-    }
+      return data;
 
-    // Subscribe to any future state updates and persist the settings
-    this.subscribe((mutation, newState) => {
-      console.log('State Changed!', newState);
-      storage.set('parley-data', newState);
+      /**
+     * TODO: Need to make this smarter about data structure changes between data versions - Issue #1
+     */
     });
   }, // END: initializeStore()
 
