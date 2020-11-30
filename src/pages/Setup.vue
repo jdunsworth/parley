@@ -235,7 +235,7 @@ export default {
       step: 1,
       organization: 'dale',
       tokenDialog: false,
-      accessToken: '17160~88DfxoEpRGkHG5hAztV0GLZFIkQJgG81Nbygtsq8jkcDI0oCZOvakJ59UcgMwVh9',
+      accessToken: '',
       loading: false,
       profile: null,
     };

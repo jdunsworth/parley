@@ -38,6 +38,7 @@ function createWindow() {
       nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
       nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
       enableRemoteModule: true, // Electron-Settings Support
+      allowRunningInsecureContent: false,
     },
   });
 

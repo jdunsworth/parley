@@ -12,6 +12,7 @@ const config = {
 
   appVersion: packageJSON.version, // Application Version
   dataVersion: packageJSON.parley['data-version'], // Configuration (this) file version
+  localDataFile: 'parley-data',
 
   /**
   * Default State Object
